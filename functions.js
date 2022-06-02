@@ -1,4 +1,5 @@
 const geoip = require('fast-geoip')
+const axios = require('axios').default
 exports.cors = () => ({
   status: 200,
   response_headers: {
@@ -44,34 +45,17 @@ exports.getCountry = async (event) => {
   const ip = event.data.ip
   const geo = await geoip.lookup(ip)
   const country = geo.country
-  const http = require("https");
 
   const options = {
-    "method": "PUT",
-    "hostname": "gs.ps.anexia-it.com",
-    "port": null,
-    "path": `/api/rms_jk/v1/request.json/c7d697089f314d0980b2316003ccbd21?api_key=${process.env.API_KEY}`,
-    "headers": {
-      "content-type": "application/json",
-      "Content-Length": "16"
-    }
-  };
+    method: 'PUT',
+    url: `https://gs.ps.anexia-it.com/api/rms_jk/v1/request.json/${event.data.identifier}`,
+    params: { api_key: process.env.API_KEY },
+    headers: { 'content-type': 'application/json' },
+    data: { country }
+  }
 
-  const req = http.request(options, function (res) {
-    const chunks = [];
-
-    res.on("data", function (chunk) {
-      chunks.push(chunk);
-    });
-
-    res.on("end", function () {
-      const body = Buffer.concat(chunks);
-      console.log(body.toString());
-    });
-  });
-
-  req.write(JSON.stringify({country }));
-  req.end();
+  const response = await axios.request(options)
+  console.log({ response })
   return {
     status: 200,
     data: country

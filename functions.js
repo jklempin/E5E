@@ -22,6 +22,10 @@ exports.externalSource = () => {
   };
 }
 exports.dumpData = (event) => {
+  console.log("output")
+  console.log(
+    {event}
+  )
   return {
     status: 200,
     response_headers: {

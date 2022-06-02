@@ -39,11 +39,13 @@ exports.dumpData = (event) => {
 }
 
 exports.getCountry = async (event) => {
-  console.log("Start4")
+  console.log('Start4')
+  console.log(process.env.API_KEY)
   const ip = event.data.ip
   const geo = await geoip.lookup(ip)
-  console.log({geo})
+  const country = geo.country
   return {
     status: 200,
+    data: country
   }
 }

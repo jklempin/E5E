@@ -1,3 +1,5 @@
+import geoip from 'geoip-lite'
+
 exports.cors = () => ({
   status: 200,
   response_headers: {
@@ -16,7 +18,7 @@ exports.externalSource = () => {
     },
     data: {
       results: [
-        { text: 'test' }
+        {text: 'test'}
       ]
     }
   }
@@ -24,7 +26,7 @@ exports.externalSource = () => {
 exports.dumpData = (event) => {
   console.log('output')
   console.log(
-    { event }
+    {event}
   )
   return {
     status: 200,
@@ -39,11 +41,10 @@ exports.dumpData = (event) => {
 
 exports.getCountry = (event) => {
 
-  console.log("Start")
-  const geoip = require('geoip-lite')
+  console.log("Start2")
   const ip = event.data.ip
   const geo = geoip.lookup(ip)
-  console.log({ geo })
+  console.log({geo})
   return {
     status: 200,
   }

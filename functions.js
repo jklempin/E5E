@@ -1,4 +1,3 @@
-const geoip = require('fast-geoip')
 const axios = require('axios').default
 exports.cors = () => ({
   status: 200,

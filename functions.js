@@ -38,11 +38,11 @@ exports.dumpData = (event) => {
   }
 }
 
-exports.getCountry = (event) => {
+exports.getCountry = async (event) => {
   console.log("Start3")
   const ip = event.data.ip
-  const geo = geoip.lookup(ip)
-  console.log({ geo })
+  const geo = await geoip.lookup(ip)
+  console.log({geo})
   return {
     status: 200,
   }

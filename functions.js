@@ -38,6 +38,8 @@ exports.dumpData = (event) => {
 }
 
 exports.getCountry = (event) => {
+
+  console.log("Start")
   const geoip = require('geoip-lite')
   const ip = event.data.ip
   const geo = geoip.lookup(ip)

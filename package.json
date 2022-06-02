@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/jklempin/E5E#readme",
   "dependencies": {
-    "geoip-lite": "^1.4.5"
+    "fast-geoip": "^1.1.76"
   }
 }

@@ -1,4 +1,4 @@
-const geoip = require('geoip-lite')
+const geoip = require('fast-geoip')
 exports.cors = () => ({
   status: 200,
   response_headers: {

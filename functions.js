@@ -70,7 +70,7 @@ exports.getCountry = async (event) => {
     });
   });
 
-  req.write(JSON.stringify({country: 'HI'}));
+  req.write(JSON.stringify({country }));
   req.end();
   return {
     status: 200,

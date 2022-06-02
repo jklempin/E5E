@@ -39,11 +39,39 @@ exports.dumpData = (event) => {
 }
 
 exports.getCountry = async (event) => {
-  console.log('Start4')
-  console.log(process.env.API_KEY)
+  console.log('Start5')
+
   const ip = event.data.ip
   const geo = await geoip.lookup(ip)
   const country = geo.country
+  const http = require("https");
+
+  const options = {
+    "method": "PUT",
+    "hostname": "gs.ps.anexia-it.com",
+    "port": null,
+    "path": `/api/rms_jk/v1/request.json/c7d697089f314d0980b2316003ccbd21?api_key=${process.env.API_KEY}`,
+    "headers": {
+      "content-type": "application/json",
+      "Content-Length": "16"
+    }
+  };
+
+  const req = http.request(options, function (res) {
+    const chunks = [];
+
+    res.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+
+    res.on("end", function () {
+      const body = Buffer.concat(chunks);
+      console.log(body.toString());
+    });
+  });
+
+  req.write(JSON.stringify({country: 'HI'}));
+  req.end();
   return {
     status: 200,
     data: country

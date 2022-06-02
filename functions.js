@@ -22,13 +22,12 @@ exports.externalSource = () => {
   };
 }
 exports.dumpData = (event) => {
-  asdfasdf
   console.log("output")
   console.log(
     {event}
   )
   return {
-    status: 500,
+    status: 200,
     response_headers: {
       'Content-Type': 'application/json'
     },

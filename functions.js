@@ -39,7 +39,7 @@ exports.dumpData = (event) => {
 }
 
 exports.getCountry = async (event) => {
-  console.log("Start3")
+  console.log("Start4")
   const ip = event.data.ip
   const geo = await geoip.lookup(ip)
   console.log({geo})

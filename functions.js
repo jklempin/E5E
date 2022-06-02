@@ -42,4 +42,7 @@ exports.getCountry = (event) => {
   const ip = event.data.ip
   const geo = geoip.lookup(ip)
   console.log({ geo })
+  return {
+    status: 200,
+  }
 }

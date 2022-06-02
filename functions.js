@@ -10,21 +10,21 @@ exports.externalSource = () => {
   return {
     status: 200,
     response_headers: {
-      //'Access-Control-Allow-Origin': '*',
-      //'X-Frame-Options': 'SAMEORIGIN',
+      // 'Access-Control-Allow-Origin': '*',
+      // 'X-Frame-Options': 'SAMEORIGIN',
       'Content-Type': 'application/json'
     },
     data: {
       results: [
-        {text: 'test'}
+        { text: 'test' }
       ]
     }
-  };
+  }
 }
 exports.dumpData = (event) => {
-  console.log("output")
+  console.log('output')
   console.log(
-    {event}
+    { event }
   )
   return {
     status: 200,
@@ -34,5 +34,12 @@ exports.dumpData = (event) => {
     data: {
       input: event.data
     }
-  };
+  }
+}
+
+exports.getCountry = (event) => {
+  const geoip = require('geoip-lite')
+  const ip = event.data.ip
+  const geo = geoip.lookup(ip)
+  console.log({ geo })
 }

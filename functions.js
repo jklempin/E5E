@@ -39,23 +39,16 @@ exports.dumpData = (event) => {
 }
 
 exports.getCountry = async (event) => {
-  console.log('Start6')
+  console.log('Start7')
 
-  // const ip = event.data.ip
-  // const geo = await geoip.lookup(ip)
-  // const country = geo.country
+  const ip = event.data.ip
+  const geo = await geoip.lookup(ip)
+  const country = geo.country
 
-  const options = {
-    method: 'PUT',
-    url: `https://gs.ps.anexia-it.com/api/rms_jk/v1/request.json/${event.data.identifier}`,
-    params: { api_key: process.env.API_KEY },
-    headers: { 'content-type': 'application/json' },
-    data: { country:"HU" }
-  }
-
-  const response = await axios.request(options)
-  console.log({ response })
   return {
     status: 200,
+    data: {
+      country
+    }
   }
 }

@@ -1,4 +1,4 @@
-const axios = require('axios').default
+const geoip = require('fast-geoip');
 exports.cors = () => ({
   status: 200,
   response_headers: {
@@ -41,7 +41,7 @@ exports.dumpData = (event) => {
 exports.getCountry = async (event) => {
   console.log('Start7')
 
-  const ip = event.data.ip
+  const ip = event.data.ip || '207.97.227.239'
   const geo = await geoip.lookup(ip)
   const country = geo.country
 

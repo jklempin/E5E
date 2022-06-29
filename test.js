@@ -9,15 +9,21 @@ exports.main = (event) => {
         {'id': 7, 'text': 'Contact form',},
     ];
 
-    console.log(event);
+    if (event.params.q && event.params.q[0] !== '') {
+        selectFields = filterItems(selectFields, event.params.q[0])
+    }
 
     return {
         status: 200,
         response_headers: {
+            'Access-Control-Allow-Origin': '*',
+            'X-Frame-Options': 'SAMEORIGIN',
             'Content-Type': 'application/json'
         },
-        data: {
-            selectFields
-        }
+        data: { 'results': selectFields }
     }
+}
+
+function filterItems(arr, query) {
+    return arr.filter(el => el.text.toLowerCase().indexOf(query.toLowerCase()) > -1)
 }
